@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deepesh Yadav — Digital Marketing Executive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#F7F6F2;
+    --ink:#14181C;
+    --sub:#3A3F44;
+    --mute:#52585E;
+    --line:#D9D7CC;
+    --line-strong:#B9B7AC;
+    --blue:#2F5DFF;
+    --green:#1E8A5F;
+    --hover:#EFEEE7;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  ::selection{background:var(--blue); color:var(--bg);}
+
+  .font-display{font-family:'Space Grotesk', ui-sans-serif, system-ui, sans-serif;}
+  .font-mono{font-family:'JetBrains Mono', ui-monospace, monospace;}
+
+  .ledger-lines{
+    background-image:repeating-linear-gradient(to bottom, transparent, transparent 39px, var(--line) 40px);
+  }
+
+  @keyframes blink{ 0%,45%{opacity:1;} 50%,95%{opacity:0;} 100%{opacity:1;} }
+  .blink{ animation: blink 1.2s step-end infinite; }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation:none !important; transition:none !important; }
+  }
+
+  a{color:inherit; text-decoration:none;}
+  button{font:inherit; color:inherit; background:none; border:none; cursor:pointer;}
+  ul{list-style:none;}
+  svg{display:block;}
+
+  .wrap{max-width:1152px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  header.site-header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    border-bottom:1px solid var(--line);
+    background:rgba(247,246,242,0.9);
+    backdrop-filter:blur(8px);
+  }
+  .nav-row{
+    height:64px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{font-size:14px; font-weight:600; letter-spacing:-0.02em;}
+  .logo .slash{color:var(--blue);}
+  nav.main-nav{display:none; align-items:center; gap:28px;}
+  .nav-link{
+    font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--mute); transition:color .2s;
+  }
+  .nav-link:hover{color:var(--ink);}
+  .contact-btn{
+    font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    padding:8px 16px; background:var(--ink); color:var(--bg);
+    transition:background .2s;
+  }
+  .contact-btn:hover{background:var(--blue);}
+
+  @media(min-width:768px){ nav.main-nav{display:flex;} }
+
+  /* ---------- SIDE RAIL ---------- */
+  .rail{
+    display:none; position:fixed; left:24px; top:50%; transform:translateY(-50%);
+    z-index:40; flex-direction:column; align-items:center;
+  }
+  @media(min-width:1024px){ .rail{display:flex;} }
+  .rail-btn{
+    font-size:11px; letter-spacing:0.08em; padding:6px 0;
+    color:rgba(20,24,28,0.25); transition:color .2s;
+  }
+  .rail-btn.active{ color:var(--blue); font-weight:600; }
+  .rail-btn:hover{ color:rgba(20,24,28,0.6); }
+  .rail-sep{ width:1px; height:20px; background:var(--line); }
+
+  main{ padding-top:64px; }
+  section{ border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+
+  /* ---------- Reveal ---------- */
+  .reveal{
+    opacity:0; transform:translateY(20px);
+    transition:opacity .7s ease-out, transform .7s ease-out;
+  }
+  .reveal.shown{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Eyebrow ---------- */
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.08em;
+    color:var(--blue); display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow .dash{ width:16px; height:1px; background:var(--blue); }
+
+  /* ---------- HERO ---------- */
+  #hero .inner{ padding:80px 0 64px; }
+  @media(min-width:768px){ #hero .inner{ padding:112px 0 96px; } }
+  .status-line{
+    font-size:12px; letter-spacing:0.08em; color:var(--mute);
+    margin-bottom:24px; display:flex; align-items:center; gap:8px;
+  }
+  .status-dot{ width:6px; height:6px; border-radius:999px; background:var(--green); }
+
+  h1.name{
+    font-size:48px; font-weight:600; letter-spacing:-0.02em; line-height:0.98;
+  }
+  @media(min-width:640px){ h1.name{ font-size:60px; } }
+  @media(min-width:768px){ h1.name{ font-size:72px; } }
+
+  .role-line{ margin-top:16px; font-size:20px; color:var(--mute); }
+  @media(min-width:768px){ .role-line{ font-size:24px; } }
+
+  .lede{ margin-top:24px; max-width:576px; font-size:15px; line-height:1.7; color:var(--sub); }
+
+  .cta-row{ margin-top:40px; display:flex; flex-wrap:wrap; gap:12px; }
+  .btn-primary, .btn-secondary{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 20px; font-size:13px; text-transform:uppercase; letter-spacing:0.08em;
+    transition:all .2s;
+  }
+  .btn-primary{ background:var(--ink); color:var(--bg); }
+  .btn-primary:hover{ background:var(--blue); }
+  .btn-primary svg{ transition:transform .2s; }
+  .btn-primary:hover svg{ transform:translateX(2px); }
+  .btn-secondary{ border:1px solid var(--ink); }
+  .btn-secondary:hover{ border-color:var(--blue); color:var(--blue); }
+
+  .stat-grid{
+    margin-top:56px; display:grid; grid-template-columns:repeat(2,1fr);
+    border-top:1px solid var(--line); border-left:1px solid var(--line);
+  }
+  @media(min-width:640px){ .stat-grid{ grid-template-columns:repeat(4,1fr); } }
+  .stat-cell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px; }
+  .stat-value{ font-family:'JetBrains Mono', monospace; font-size:24px; font-weight:600; }
+  .stat-label{ margin-top:4px; font-size:12px; color:var(--mute); }
+
+  /* ---------- ABOUT ---------- */
+  #about .inner{ padding:80px 0; display:grid; gap:40px; }
+  @media(min-width:768px){ #about .inner{ padding:112px 0; grid-template-columns:repeat(12,1fr); } }
+  .about-main{ grid-column:span 7; }
+  .about-title{ font-size:30px; font-weight:600; margin-top:16px; max-width:480px; }
+  @media(min-width:768px){ .about-title{ font-size:36px; } }
+  .about-p{ margin-top:24px; font-size:15px; line-height:1.7; color:var(--sub); max-width:480px; }
+  .about-side{ grid-column:span 5; }
+  .info-table{ border-top:1px solid var(--line); font-family:'JetBrains Mono', monospace; font-size:13px; }
+  .info-row{
+    display:flex; flex-direction:column; gap:2px;
+    border-bottom:1px solid var(--line); padding:12px 0;
+  }
+  @media(min-width:640px){
+    .info-row{ flex-direction:row; align-items:baseline; justify-content:space-between; gap:16px; }
+  }
+  .info-key{ color:var(--mute); flex-shrink:0; }
+
+  /* ---------- SPECIALIZATION ---------- */
+  #specialization .inner{ padding:80px 0; }
+  @media(min-width:768px){ #specialization .inner{ padding:112px 0; } }
+  .section-title{ font-size:30px; font-weight:600; margin-top:16px; max-width:576px; }
+  @media(min-width:768px){ .section-title{ font-size:36px; } }
+  .pillar-list{ margin-top:48px; border-top:1px solid var(--line); }
+
+  .pillar-row{
+    border-bottom:1px solid var(--line); padding:32px 0 32px 16px; margin-left:-16px;
+    display:grid; gap:16px; align-items:start;
+    border-left:2px solid transparent; transition:border-color .2s, background .2s;
+  }
+  .pillar-row:hover{ border-left-color:var(--blue); background:rgba(239,238,231,0.5); }
+  @media(min-width:768px){
+    .pillar-row{ grid-template-columns:repeat(12,1fr); gap:24px; }
+    .pillar-idx{ grid-column:span 1; }
+    .pillar-icon{ grid-column:span 1; }
+    .pillar-body{ grid-column:span 6; }
+    .pillar-stat{ grid-column:span 4; text-align:right; }
+  }
+  .pillar-idx{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--mute); }
+  .pillar-icon svg{ color:var(--blue); }
+  .pillar-body h3{ font-size:20px; font-weight:600; }
+  .pillar-body p{ margin-top:6px; font-size:14px; color:var(--mute); max-width:400px; }
+  .tag-row{ margin-top:16px; display:flex; flex-wrap:wrap; gap:6px; }
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.03em;
+    padding:4px 8px; border:1px solid var(--line); color:var(--mute);
+  }
+  .pillar-stat .val{ font-family:'JetBrains Mono', monospace; font-size:24px; font-weight:600; }
+  .pillar-stat .lbl{ margin-top:4px; font-size:12px; color:var(--mute); }
+
+  /* ---------- EXPERIENCE ---------- */
+  #experience .inner{ padding:80px 0; display:grid; gap:40px; }
+  @media(min-width:768px){ #experience .inner{ padding:112px 0; grid-template-columns:repeat(12,1fr); } }
+  .exp-side{ grid-column:span 4; }
+  .exp-side-inner{ margin-top:24px; }
+  @media(min-width:768px){ .exp-side-inner{ position:sticky; top:96px; } }
+  .exp-side-inner h3{ font-size:24px; font-weight:600; }
+  .exp-side-inner .company-type{ margin-top:4px; font-size:13px; font-family:'JetBrains Mono', monospace; color:var(--mute); }
+  .exp-side-inner .dates{ margin-top:16px; font-size:13px; font-family:'JetBrains Mono', monospace; color:var(--blue); }
+  .exp-side-inner .desc{ margin-top:24px; font-size:14px; line-height:1.7; color:var(--sub); }
+
+  .exp-main{ grid-column:span 8; }
+  .resp-grid{
+    display:grid; gap:32px 32px; border-top:1px solid var(--line); padding-top:32px;
+  }
+  @media(min-width:640px){ .resp-grid{ grid-template-columns:1fr 1fr; } }
+  .resp-label{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--blue); margin-bottom:12px; }
+  .resp-list li{
+    font-size:14px; line-height:1.5; color:var(--sub); padding-left:16px; position:relative; margin-bottom:10px;
+  }
+  .resp-list li::before{
+    content:''; position:absolute; left:0; top:7px; width:6px; height:1px; background:rgba(20,24,28,0.4);
+  }
+
+  .achievements{ margin-top:40px; padding-top:32px; border-top:1px solid var(--line); }
+  .ach-label{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--green); margin-bottom:16px; }
+  .ach-list li{
+    display:flex; align-items:flex-start; gap:10px; font-size:14px; line-height:1.5; color:var(--ink); margin-bottom:10px;
+  }
+  .ach-list svg{ margin-top:2px; flex-shrink:0; color:var(--green); }
+
+  /* ---------- PROJECTS ---------- */
+  #projects .inner{ padding:80px 0; }
+  @media(min-width:768px){ #projects .inner{ padding:112px 0; } }
+  .proj-grid{
+    margin-top:48px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line);
+  }
+  @media(min-width:768px){ .proj-grid{ grid-template-columns:repeat(3,1fr); } }
+  .proj-card{ background:var(--bg); height:100%; padding:24px; transition:background .2s; }
+  .proj-card:hover{ background:var(--hover); }
+  .proj-id{ font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--mute); }
+  .proj-card h3{ font-size:18px; font-weight:600; margin-top:12px; line-height:1.3; }
+  .proj-card .obj{ margin-top:12px; font-size:13px; line-height:1.6; color:var(--mute); }
+  .proj-tools{ margin-top:20px; display:flex; flex-wrap:wrap; gap:6px; }
+  .proj-outcome{ margin-top:20px; padding-top:20px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:6px; }
+  .proj-outcome div{ display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--ink); }
+  .proj-outcome svg{ margin-top:2px; flex-shrink:0; color:var(--green); }
+
+  /* ---------- SHOWCASE ---------- */
+  #showcase .inner{ padding:80px 0; }
+  @media(min-width:768px){ #showcase .inner{ padding:112px 0; } }
+  .showcase-intro{ margin-top:16px; font-size:14px; color:var(--mute); max-width:576px; }
+  .showcase-groups{ margin-top:48px; display:flex; flex-direction:column; gap:48px; }
+  .group-title{ font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--mute); margin-bottom:16px; text-transform:uppercase; }
+  .thumb-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  @media(min-width:640px){ .thumb-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media(min-width:768px){ .thumb-grid{ grid-template-columns:repeat(5,1fr); } }
+  .thumb{
+    aspect-ratio:16/9; border:1px dashed var(--line-strong);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:0 8px; transition:border-color .2s;
+  }
+  .thumb:hover{ border-color:var(--blue); }
+  .thumb svg{ color:var(--line-strong); }
+  .thumb .name{ margin-top:8px; font-size:11px; line-height:1.3; color:var(--mute); }
+  .thumb .pending{ margin-top:4px; font-family:'JetBrains Mono', monospace; font-size:9px; color:var(--line-strong); }
+
+  /* ---------- TOOLKIT ---------- */
+  #toolkit .inner{ padding:80px 0; display:grid; gap:48px; }
+  @media(min-width:768px){ #toolkit .inner{ padding:112px 0; grid-template-columns:1fr 1fr; } }
+  #toolkit h3{ font-size:24px; font-weight:600; margin-top:16px; margin-bottom:24px; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{ font-family:'JetBrains Mono', monospace; font-size:12px; padding:8px 12px; border:1px solid var(--line); transition:all .2s; }
+  .chip:hover{ border-color:var(--blue); color:var(--blue); }
+  .chip-dark{ font-family:'JetBrains Mono', monospace; font-size:12px; padding:8px 12px; background:var(--ink); color:var(--bg); }
+  .toolkit-strengths{ }
+  @media(min-width:768px){ .toolkit-strengths{ margin-top:52px; } }
+
+  /* ---------- CONTACT ---------- */
+  #contact .inner{ padding:80px 0; }
+  @media(min-width:768px){ #contact .inner{ padding:112px 0; } }
+  .contact-title{ font-size:36px; font-weight:600; margin-top:16px; max-width:480px; }
+  @media(min-width:768px){ .contact-title{ font-size:48px; } }
+  .contact-grid{
+    margin-top:48px; display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--line); border:1px solid var(--line); max-width:640px;
+  }
+  @media(min-width:640px){ .contact-grid{ grid-template-columns:1fr 1fr; } }
+  .contact-cell{ background:var(--bg); padding:20px; display:flex; align-items:center; gap:16px; }
+  .contact-cell svg{ color:var(--blue); flex-shrink:0; }
+  .contact-cell .clabel{ font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.08em; color:var(--mute); }
+  .contact-cell .cval{
+    font-size:14px; font-style:italic; color:rgba(20,24,28,0.5);
+    text-decoration:underline; text-decoration-style:dashed; text-underline-offset:4px;
+  }
+  .placeholder-note{ margin-top:16px; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--line-strong); }
+  .send-btn{
+    margin-top:40px; display:inline-flex; align-items:center; gap:8px;
+    padding:16px 24px; background:var(--ink); color:var(--bg);
+    font-size:13px; text-transform:uppercase; letter-spacing:0.08em; transition:background .2s;
+  }
+  .send-btn:hover{ background:var(--blue); }
+
+  footer{ margin-top:48px; border-top:1px solid var(--line); }
+  .foot-inner{
+    padding:24px; display:flex; flex-direction:column; gap:8px; justify-content:space-between;
+    font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--mute);
+  }
+  @media(min-width:640px){ .foot-inner{ flex-direction:row; } }
+  .foot-inner span{ display:flex; align-items:center; gap:6px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav-row">
+    <button class="logo" data-scroll="hero">DY <span class="slash">/</span> LOG</button>
+    <nav class="main-nav">
+      <button class="nav-link" data-scroll="about">About</button>
+      <button class="nav-link" data-scroll="specialization">Focus</button>
+      <button class="nav-link" data-scroll="experience">Experience</button>
+      <button class="nav-link" data-scroll="projects">Projects</button>
+      <button class="nav-link" data-scroll="showcase">Showcase</button>
+    </nav>
+    <button class="contact-btn" data-scroll="contact">Contact</button>
+  </div>
+</header>
+
+<div class="rail" id="rail"></div>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero" class="ledger-lines">
+    <div class="wrap inner">
+      <div class="status-line"><span class="status-dot"></span>CAMPAIGN RECORD — STATUS: ACTIVE<span class="blink" style="color:var(--blue)">_</span></div>
+      <h1 class="font-display name">Deepesh Yadav</h1>
+      <p class="role-line font-display">Digital Marketing Executive</p>
+      <p class="lede">1.5 years running email campaigns, social production, and market research inside a startup — where one person often owns the database, the shoot logistics, and the research brief at the same time.</p>
+      <div class="cta-row">
+        <button class="btn-primary font-mono" data-scroll="specialization">View the work <svg id="icon-arrow-right" width="14" height="14"></svg></button>
+        <button class="btn-secondary font-mono" data-scroll="contact">Get in touch</button>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="stat-value" id="stat-records">0+</div><div class="stat-label">Customer records</div></div>
+        <div class="stat-cell"><div class="stat-value" id="stat-years">0 yrs</div><div class="stat-label">Experience</div></div>
+        <div class="stat-cell"><div class="stat-value">3</div><div class="stat-label">Core disciplines</div></div>
+        <div class="stat-cell"><div class="stat-value">Multi-state</div><div class="stat-label">Shoot operations</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap inner">
+      <div class="about-main reveal">
+        <div class="eyebrow"><span>01</span><span class="dash"></span>ABOUT</div>
+        <h2 class="font-display about-title">Marketing, operations, and research — usually in the same week.</h2>
+        <p class="about-p">I'm a Digital Marketing Executive with 1.5 years of experience across Email Marketing, Social Media Management, and Marketing R&D — built inside a startup where those lines blur. I've managed a 20,000+ customer email database, coordinated creative shoots across multiple Indian states, and researched markets ahead of client onboarding.</p>
+        <p class="about-p">I like environments where I'm covering marketing, production, and strategy at once — it keeps the research honest and the campaigns grounded in what's actually true about the market.</p>
+      </div>
+      <div class="about-side reveal" style="transition-delay:100ms">
+        <div class="info-table" id="info-table"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALIZATION -->
+  <section id="specialization">
+    <div class="wrap inner">
+      <div class="eyebrow"><span>02</span><span class="dash"></span>SPECIALIZATION</div>
+      <h2 class="font-display section-title">Three disciplines, one campaign cycle.</h2>
+      <div class="pillar-list" id="pillar-list"></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap inner">
+      <div class="exp-side reveal">
+        <div class="eyebrow"><span>03</span><span class="dash"></span>EXPERIENCE</div>
+        <div class="exp-side-inner">
+          <h3 class="font-display">Jiggle Wiggle</h3>
+          <p class="company-type">Startup</p>
+          <p class="dates">Jan 2025 — Present</p>
+          <p class="desc">Managing Email Marketing, Social Media, R&D, and production coordination across cross-functional teams.</p>
+        </div>
+      </div>
+      <div class="exp-main reveal" style="transition-delay:100ms">
+        <div class="resp-grid" id="resp-grid"></div>
+        <div class="achievements">
+          <div class="ach-label">KEY ACHIEVEMENTS — APPROVED</div>
+          <ul class="ach-list" id="ach-list"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap inner">
+      <div class="eyebrow"><span>04</span><span class="dash"></span>PROJECTS</div>
+      <h2 class="font-display section-title">Case files from the last 1.5 years.</h2>
+      <div class="proj-grid" id="proj-grid"></div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section id="showcase">
+    <div class="wrap inner">
+      <div class="eyebrow"><span>05</span><span class="dash"></span>WORK SHOWCASE</div>
+      <h2 class="font-display section-title">Attachments, on the way.</h2>
+      <p class="showcase-intro">Slots reserved for real screenshots — swap these frames out with campaign dashboards, content grids, and reports as they're cleared to share.</p>
+      <div class="showcase-groups" id="showcase-groups"></div>
+    </div>
+  </section>
+
+  <!-- TOOLKIT -->
+  <section id="toolkit">
+    <div class="wrap inner">
+      <div class="reveal">
+        <div class="eyebrow"><span>06</span><span class="dash"></span>TOOLKIT</div>
+        <h3 class="font-display">Tools &amp; Platforms</h3>
+        <div class="chip-row" id="tools-row"></div>
+      </div>
+      <div class="reveal toolkit-strengths" style="transition-delay:100ms">
+        <h3 class="font-display">Strengths</h3>
+        <div class="chip-row" id="strengths-row"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="ledger-lines">
+    <div class="wrap inner">
+      <div class="eyebrow"><span>07</span><span class="dash"></span>CONTACT</div>
+      <h2 class="font-display contact-title">Open to email, social, and research roles.</h2>
+      <div class="contact-grid" id="contact-grid"></div>
+      <p class="placeholder-note">* placeholder fields — replace with real details before publishing</p>
+      <a href="mailto:you@domain.com" class="send-btn font-mono">Send an email <svg id="icon-arrow-up-right" width="14" height="14"></svg></a>
+    </div>
+    <footer>
+      <div class="wrap foot-inner">
+        <span id="foot-year"></span>
+        <span><svg id="icon-plane" width="12" height="12"></svg> Based in India, coordinating everywhere</span>
+      </div>
+    </footer>
+  </section>
+
+</main>
+
+<script>
+/* ------------------------------------------------------------ */
+/*  Minimal inline SVG icon set (stand-in for lucide-react)       */
+/* ------------------------------------------------------------ */
+const ICONS = {
+  mail: '<path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 6l8 7 8-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  share: '<circle cx="18" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.2 10.7L15.8 6.3M8.2 13.3l7.6 4.4" stroke="currentColor" stroke-width="1.8"/>',
+  search: '<circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M21 21l-5.5-5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 10.5l1.7 1.7L14 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  mapPin: '<path d="M12 21s7-6.7 7-12a7 7 0 10-14 0c0 5.3 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  phone: '<path d="M6 3h3l1.5 5-2.2 1.5a12 12 0 006.2 6.2L16 13.5l5 1.5v3a2 2 0 01-2.2 2A17 17 0 014 5.2 2 2 0 016 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+  linkedin: '<rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="7.5" cy="8" r="1.1" fill="currentColor"/><path d="M7.5 11v6M11 11v6M11 13.5c0-1.5 1-2.5 2.5-2.5s2.5 1 2.5 2.5V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+  arrowUpRight: '<path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  arrowRight: '<path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  check: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 12.3l2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  plane: '<path d="M3 12l18-8-6 18-3-7-7-3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>',
+  sparkles: '<path d="M12 3l1.4 4.6L18 9l-4.6 1.4L12 15l-1.4-4.6L6 9l4.6-1.4L12 3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>',
+};
+function icon(name, size=16){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" style="display:block">${ICONS[name]}</svg>`;
+}
+
+/* ------------------------------------------------------------ */
+/*  DATA                                                          */
+/* ------------------------------------------------------------ */
+const SECTIONS = [
+  { id: "hero", label: "Record" },
+  { id: "about", label: "About" },
+  { id: "specialization", label: "Focus" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "showcase", label: "Showcase" },
+  { id: "toolkit", label: "Toolkit" },
+  { id: "contact", label: "Contact" },
+];
+
+const PILLARS = [
+  {
+    icon: "mail",
+    title: "Email Marketing",
+    tagline: "Campaigns that reach the inbox, backed by a database clean enough to trust.",
+    skills: ["Customer Database Management","Email Campaign Execution","Promotional Campaigns","Newsletter Campaigns","List Management","Campaign Scheduling"],
+    stat: { value: "20,000", suffix: "+", label: "records maintained" },
+  },
+  {
+    icon: "share",
+    title: "Social Media Management",
+    tagline: "Content calendars that hold up once they meet a real shoot day.",
+    skills: ["Content Planning","Campaign Coordination","Content Scheduling","Shoot Coordination","Production Coordination","Brand Communication"],
+    stat: { value: "6", suffix: "+", label: "states shot across" },
+  },
+  {
+    icon: "search",
+    title: "Marketing R&D",
+    tagline: "Research that shapes the brief before a campaign goes live.",
+    skills: ["Competitor Analysis","Market Research","Customer Research","Industry Research","Trend Analysis","Opportunity Research"],
+    stat: { value: "1.5", suffix: " yrs", label: "of applied research" },
+  },
+];
+
+const RESPONSIBILITY_GROUPS = [
+  { label: "EMAIL", items: [
+    "Managed and maintained an email database of 20,000+ customer records",
+    "Executed promotional campaigns and newsletters using Zoho Campaigns",
+    "Maintained campaign databases and reporting",
+  ]},
+  { label: "SOCIAL", items: [
+    "Planned and coordinated social media activities and content schedules",
+    "Coordinated photographers, videographers, models, and production teams",
+  ]},
+  { label: "OPS", items: [
+    "Managed travel, accommodation, and logistics for shoot teams across India",
+    "Coordinated with internal teams and external vendors for campaign execution",
+  ]},
+  { label: "R&D", items: [
+    "Conducted market research and competitor analysis for upcoming clients",
+    "Generated reports in Excel and Google Sheets to support strategy",
+  ]},
+];
+
+const ACHIEVEMENTS = [
+  "Managed an email database of 20,000+ customer records",
+  "Executed multiple promotional campaigns via Zoho Campaigns",
+  "Coordinated social media production across multiple Indian states",
+  "Ran travel and operational logistics for production teams end-to-end",
+  "Supported client acquisition through market research and competitor analysis",
+];
+
+const PROJECTS = [
+  {
+    id: "P-01", title: "Email Marketing Campaign Management",
+    objective: "Maintain customer communication and improve execution across the email channel.",
+    tools: ["Zoho Campaigns","Excel","Google Sheets","Google Workspace"],
+    outcome: ["20,000+ customer records managed efficiently","Multiple email campaigns executed successfully"],
+  },
+  {
+    id: "P-02", title: "Social Media & Shoot Operations",
+    objective: "Coordinate content production while managing creative teams and travel across states.",
+    tools: ["Excel","Google Sheets","Google Workspace","ChatGPT"],
+    outcome: ["Multiple content shoots coordinated across India","Zero operational delays across production travel"],
+  },
+  {
+    id: "P-03", title: "Market Research & Development",
+    objective: "Support business growth through structured research and competitor analysis.",
+    tools: ["Google Search","Excel","Google Sheets","ChatGPT"],
+    outcome: ["Delivered insights that shaped new-client strategy","Findings used directly in business decisions"],
+  },
+];
+
+const SHOWCASE_GROUPS = [
+  { title: "Email Marketing", items: ["Zoho Campaign Dashboard","Email Template","Customer Database","Campaign Reports","Newsletter Sample"] },
+  { title: "Social Media", items: ["Instagram Posts","Reels","Content Calendar","Behind-the-Scenes","Team Coordination"] },
+  { title: "Shoot & Travel Management", items: ["Travel Itinerary","Booking Confirmation","Production Schedule","Shoot Planning Sheet"] },
+  { title: "Research & Development", items: ["Competitor Analysis","Market Research Report","Industry Research","Trend Analysis Sheet"] },
+];
+
+const TOOLS = ["Zoho Campaigns","Microsoft Excel","Google Sheets","Google Workspace","ChatGPT"];
+const STRENGTHS = ["Quick Learner","Research-Oriented","Team Coordination","Communication","Problem Solving","Adaptability","Multi-tasking","Time Management"];
+
+const INFO_ROWS = [
+  ["Role","Digital Marketing Executive"],
+  ["Company","Jiggle Wiggle (Startup)"],
+  ["Experience","1.5 Years"],
+  ["Education","B.Sc."],
+  ["Languages","Hindi, English"],
+  ["Location","India"],
+];
+
+const CONTACT_ROWS = [
+  ["mapPin"], // placeholder, replaced below
+];
+
+function pad(n){ return String(n).padStart(2,"0"); }
+
+/* ------------------------------------------------------------ */
+/*  RENDER STATIC CONTENT                                         */
+/* ------------------------------------------------------------ */
+
+// Rail
+const rail = document.getElementById("rail");
+SECTIONS.forEach((s, i) => {
+  const btn = document.createElement("button");
+  btn.className = "rail-btn font-mono";
+  btn.textContent = pad(i);
+  btn.title = s.label;
+  btn.dataset.scroll = s.id;
+  btn.dataset.index = i;
+  rail.appendChild(btn);
+  if (i < SECTIONS.length - 1) {
+    const sep = document.createElement("div");
+    sep.className = "rail-sep";
+    rail.appendChild(sep);
+  }
+});
+
+// About info table
+const infoTable = document.getElementById("info-table");
+infoTable.innerHTML = INFO_ROWS.map(([k,v]) => `
+  <div class="info-row">
+    <span class="info-key">${k}</span>
+    <span>${v}</span>
+  </div>`).join("");
+
+// Pillars
+const pillarList = document.getElementById("pillar-list");
+pillarList.innerHTML = PILLARS.map((p, i) => `
+  <div class="pillar-row reveal" style="transition-delay:${i*80}ms">
+    <div class="pillar-idx font-mono">${pad(i)}</div>
+    <div class="pillar-icon">${icon(p.icon, 20)}</div>
+    <div class="pillar-body">
+      <h3 class="font-display">${p.title}</h3>
+      <p>${p.tagline}</p>
+      <div class="tag-row">
+        ${p.skills.map(s => `<span class="tag font-mono">${s}</span>`).join("")}
+      </div>
+    </div>
+    <div class="pillar-stat">
+      <div class="val font-mono">${p.stat.value}${p.stat.suffix}</div>
+      <div class="lbl">${p.stat.label}</div>
+    </div>
+  </div>`).join("");
+
+// Responsibilities
+const respGrid = document.getElementById("resp-grid");
+respGrid.innerHTML = RESPONSIBILITY_GROUPS.map(g => `
+  <div>
+    <div class="resp-label font-mono">${g.label}</div>
+    <ul class="resp-list">
+      ${g.items.map(item => `<li>${item}</li>`).join("")}
+    </ul>
+  </div>`).join("");
+
+// Achievements
+const achList = document.getElementById("ach-list");
+achList.innerHTML = ACHIEVEMENTS.map(a => `
+  <li>${icon("check",16)}<span>${a}</span></li>`).join("");
+
+// Projects
+const projGrid = document.getElementById("proj-grid");
+projGrid.innerHTML = PROJECTS.map((p, i) => `
+  <div class="reveal" style="transition-delay:${i*90}ms">
+    <div class="proj-card">
+      <div class="proj-id font-mono">${p.id}</div>
+      <h3 class="font-display">${p.title}</h3>
+      <p class="obj">${p.objective}</p>
+      <div class="proj-tools">
+        ${p.tools.map(t => `<span class="tag font-mono">${t}</span>`).join("")}
+      </div>
+      <div class="proj-outcome">
+        ${p.outcome.map(o => `<div>${icon("arrowUpRight",13)}<span>${o}</span></div>`).join("")}
+      </div>
+    </div>
+  </div>`).join("");
+
+// Showcase
+const showcaseGroups = document.getElementById("showcase-groups");
+showcaseGroups.innerHTML = SHOWCASE_GROUPS.map((g, gi) => `
+  <div class="reveal" style="transition-delay:${gi*80}ms">
+    <div class="group-title font-mono">${g.title}</div>
+    <div class="thumb-grid">
+      ${g.items.map(item => `
+        <div class="thumb">
+          ${icon("sparkles",14)}
+          <span class="name">${item}</span>
+          <span class="pending font-mono">PENDING</span>
+        </div>`).join("")}
+    </div>
+  </div>`).join("");
+
+// Toolkit
+document.getElementById("tools-row").innerHTML = TOOLS.map(t => `<span class="chip font-mono">${t}</span>`).join("");
+document.getElementById("strengths-row").innerHTML = STRENGTHS.map(t => `<span class="chip-dark">${t}</span>`).join("");
+
+// Contact grid
+const contactData = [
+  { icon: "mail", label: "Email", value: "you@domain.com" },
+  { icon: "phone", label: "Mobile", value: "+91 00000 00000" },
+  { icon: "linkedin", label: "LinkedIn", value: "linkedin.com/in/yourname" },
+  { icon: "mapPin", label: "Location", value: "City, India" },
+];
+document.getElementById("contact-grid").innerHTML = contactData.map(c => `
+  <div class="contact-cell">
+    ${icon(c.icon,16)}
+    <div>
+      <div class="clabel font-mono">${c.label.toUpperCase()}</div>
+      <div class="cval">${c.value}</div>
+    </div>
+  </div>`).join("");
+
+// Header icons
+document.getElementById("icon-arrow-right").outerHTML = icon("arrowRight",14);
+document.getElementById("icon-arrow-up-right").outerHTML = icon("arrowUpRight",14);
+document.getElementById("icon-plane").outerHTML = icon("plane",12);
+document.getElementById("foot-year").textContent = `© ${new Date().getFullYear()} Deepesh Yadav`;
+
+/* ------------------------------------------------------------ */
+/*  SCROLL BEHAVIOR                                                */
+/* ------------------------------------------------------------ */
+
+// smooth scroll for every [data-scroll] button
+document.querySelectorAll("[data-scroll]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = document.getElementById(btn.dataset.scroll);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+// scroll-spy for rail
+const sectionEls = SECTIONS.map(s => document.getElementById(s.id));
+const railBtns = Array.from(document.querySelectorAll(".rail-btn"));
+function updateActive() {
+  const y = window.scrollY + window.innerHeight * 0.35;
+  let idx = 0;
+  sectionEls.forEach((el, i) => {
+    if (el && el.offsetTop <= y) idx = i;
+  });
+  railBtns.forEach((b, i) => b.classList.toggle("active", i === idx));
+}
+window.addEventListener("scroll", updateActive, { passive: true });
+updateActive();
+
+// reveal-on-scroll
+const revealEls = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("shown");
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+
+/* ------------------------------------------------------------ */
+/*  COUNT-UP STATS                                                 */
+/* ------------------------------------------------------------ */
+function countUp(el, target, decimals = 0, suffix = "", duration = 1100) {
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = target * eased;
+    el.textContent = (decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString()) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+countUp(document.getElementById("stat-records"), 20000, 0, "+");
+countUp(document.getElementById("stat-years"), 1.5, 1, " yrs");
+</script>
+</body>
+</html>
